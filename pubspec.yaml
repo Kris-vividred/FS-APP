@@ -60,6 +60,11 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/scorecard/
+    - assets/images/share/
+    - assets/images/analysis/
+    - assets/images/club/
+    - assets/images/shot/
 
   fonts:
     - family: Spoqa

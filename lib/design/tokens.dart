@@ -39,22 +39,36 @@ abstract final class AppText {
   static const _xs = -0.3;
   static const _sm = -0.2;
 
-  static TextStyle _s(double size, FontWeight w, double ls, {double? lh, Color color = AppColors.contentsPrimary}) =>
-      TextStyle(
-        fontFamily: _family,
-        fontSize: size,
-        fontWeight: w,
-        letterSpacing: ls,
-        height: lh == null ? null : lh / size,
-        color: color,
-      );
+  static TextStyle _s(
+    double size,
+    FontWeight w,
+    double ls, {
+    double? lh,
+    Color color = AppColors.contentsPrimary,
+  }) => TextStyle(
+    fontFamily: _family,
+    fontSize: size,
+    fontWeight: w,
+    letterSpacing: ls,
+    height: lh == null ? null : lh / size,
+    color: color,
+  );
 
-  static TextStyle bold(double size, {double? lh, Color color = AppColors.contentsPrimary}) =>
-      _s(size, FontWeight.w700, _ls(size), lh: lh, color: color);
-  static TextStyle medium(double size, {double? lh, Color color = AppColors.contentsPrimary}) =>
-      _s(size, FontWeight.w500, _ls(size), lh: lh, color: color);
-  static TextStyle regular(double size, {double? lh, Color color = AppColors.contentsPrimary}) =>
-      _s(size, FontWeight.w400, _ls(size), lh: lh, color: color);
+  static TextStyle bold(
+    double size, {
+    double? lh,
+    Color color = AppColors.contentsPrimary,
+  }) => _s(size, FontWeight.w700, _ls(size), lh: lh, color: color);
+  static TextStyle medium(
+    double size, {
+    double? lh,
+    Color color = AppColors.contentsPrimary,
+  }) => _s(size, FontWeight.w500, _ls(size), lh: lh, color: color);
+  static TextStyle regular(
+    double size, {
+    double? lh,
+    Color color = AppColors.contentsPrimary,
+  }) => _s(size, FontWeight.w400, _ls(size), lh: lh, color: color);
 
   // letter-spacing 토큰: 16px = xs, 12–18px = sm, 10px·24px 이상 = rg(0)
   static double _ls(double size) {
@@ -92,4 +106,5 @@ abstract final class Img {
   static const sheetBar = '${_p}sheet_bar.svg';
   static const close = '${_p}close.svg';
   static const check = '${_p}check.svg';
+  static const appbarBack = '${_p}appbar_back.svg';
 }

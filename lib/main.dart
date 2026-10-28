@@ -51,12 +51,20 @@ class _PhoneFrame extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(56),
-              boxShadow: const [BoxShadow(color: Color(0x66000000), blurRadius: 40, offset: Offset(0, 16))],
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x66000000),
+                  blurRadius: 40,
+                  offset: Offset(0, 16),
+                ),
+              ],
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(44),
               child: MediaQuery(
-                data: MediaQuery.of(context).copyWith(size: _size, padding: EdgeInsets.zero),
+                data: MediaQuery.of(
+                  context,
+                ).copyWith(size: _size, padding: EdgeInsets.zero),
                 child: SizedBox.fromSize(size: _size, child: child),
               ),
             ),
