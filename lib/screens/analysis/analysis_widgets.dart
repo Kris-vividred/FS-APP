@@ -270,24 +270,34 @@ class TrendGraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = xOf(points.length - 1) + 4.5;
+    // 시안처럼 스크롤 영역은 화면 오른쪽 끝까지 이어진다(오른쪽 global 여백만큼 넘침).
+    // 그래서 오른쪽 여백에 걸친 점·라벨(예: 117)이 잘리지 않는다.
     return SizedBox(
       height: height,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        child: EntryProgress(
-          duration: const Duration(milliseconds: 1100),
-          builder: (_, t) => SizedBox(
-            width: width,
-            height: height,
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Positioned.fill(
-                  child: CustomPaint(painter: _TrendPainter(points, t)),
+      child: LayoutBuilder(
+        builder: (context, c) => OverflowBox(
+          alignment: Alignment.centerLeft,
+          minWidth: c.maxWidth + AppSpace.global,
+          maxWidth: c.maxWidth + AppSpace.global,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.only(right: AppSpace.global),
+            child: EntryProgress(
+              duration: const Duration(milliseconds: 1100),
+              builder: (_, t) => SizedBox(
+                width: width,
+                height: height,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Positioned.fill(
+                      child: CustomPaint(painter: _TrendPainter(points, t)),
+                    ),
+                    for (final (i, p) in points.indexed) _label(i, p, width, t),
+                  ],
                 ),
-                for (final (i, p) in points.indexed) _label(i, p, width, t),
-              ],
+              ),
             ),
           ),
         ),
