@@ -37,12 +37,13 @@ class _PhoneFrame extends StatelessWidget {
     final screen = MediaQuery.sizeOf(context);
     if (screen.width < 500) return child;
 
-    final scale = ((screen.height - 48) / _size.height).clamp(0.6, 1.0);
+    // 창 높이에 맞춰 프레임 전체를 축소한다(최대 1배). FittedBox라 레이아웃 크기 자체가 줄어 잘리지 않는다.
     return ColoredBox(
       color: const Color(0xFF2B2D31),
-      child: Center(
-        child: Transform.scale(
-          scale: scale,
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
           child: Container(
             width: _size.width + 24,
             height: _size.height + 24,
