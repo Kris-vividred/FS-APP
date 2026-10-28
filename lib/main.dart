@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'design/tokens.dart';
+import 'routes.dart';
+import 'screens/analysis/analysis_routes.dart';
+import 'screens/club/club_routes.dart';
+import 'screens/club/detail/club_detail_routes.dart';
 import 'screens/report_screen.dart';
+import 'screens/scorecard/scorecard_routes.dart';
+import 'screens/screen_index.dart';
+import 'screens/share/share_routes.dart';
+import 'screens/shot/shot_routes.dart';
 
 void main() => runApp(const ReportProtoApp());
 
@@ -21,10 +29,25 @@ class ReportProtoApp extends StatelessWidget {
       ),
       // 넓은 화면(데스크톱 브라우저)에서는 375x812 폰 프레임 안에 띄운다.
       builder: (context, child) => _PhoneFrame(child: child!),
-      home: const ReportScreen(),
+      initialRoute: Routes.home,
+      onGenerateRoute: (settings) => buildRoute(settings, _routes),
     );
   }
 }
+
+final Map<String, RouteBuilder> _routes = {
+  Routes.home: (q) => ReportScreen(
+    initialTab: q['tab'] == 'training' ? 1 : 0,
+    empty: q['state'] == 'empty',
+  ),
+  Routes.screens: (_) => const ScreenIndex(),
+  ...scorecardRoutes,
+  ...shareRoutes,
+  ...analysisRoutes,
+  ...clubRoutes,
+  ...clubDetailRoutes,
+  ...shotRoutes,
+};
 
 class _PhoneFrame extends StatelessWidget {
   const _PhoneFrame({required this.child});

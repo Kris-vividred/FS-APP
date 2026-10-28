@@ -1,7 +1,10 @@
 # FS-APP · 리포트 화면 프로토타입 (Flutter Web)
 
 피그마 `APP Interaction R&D` › `2026080x - 테스트 화면 외 리포트 화면` 페이지의
-**02.0.CategoryHome_Report_Screen** 을 Flutter로 구현한 웹 프로토타입입니다.
+화면 전체(58개 프레임)를 Flutter로 구현한 웹 프로토타입입니다.
+
+- 배포: https://kris-vividred.github.io/FS-APP/
+- 전체 화면 목록(프레임별 바로가기): https://kris-vividred.github.io/FS-APP/#/screens
 
 ## 실행
 
@@ -13,7 +16,7 @@ flutter run -d chrome
 배포용 빌드:
 
 ```bash
-flutter build web --release --no-web-resources-cdn
+flutter build web --release --no-web-resources-cdn --base-href /FS-APP/
 ```
 
 `build/web` 폴더를 아무 정적 서버에 올리면 됩니다. 데스크톱 브라우저에서는 375×812 폰 프레임 안에, 모바일 브라우저에서는 전체 화면으로 표시됩니다.
@@ -24,7 +27,14 @@ flutter build web --release --no-web-resources-cdn
 |---|---|
 | `lib/design/tokens.dart` | 피그마 변수(색상·간격·텍스트 스타일)와 에셋 경로 |
 | `lib/design/components.dart` | 배지, 정렬 칩, 지표 행, 공통 바텀시트 |
-| `lib/screens/report_screen.dart` | 리포트 메인 화면 |
+| `lib/routes.dart` | 화면 경로(`#/scorecard`, `#/analysis?tab=gir` …) |
+| `lib/screens/report_screen.dart` | 리포트 홈(스크린/트레이닝 탭, `?state=empty`) |
+| `lib/screens/scorecard/` | 스코어카드 목록·상세(18H/9H/팀) |
+| `lib/screens/share/` | 스코어카드 공유·편집(레이아웃 A–F, 배경) |
+| `lib/screens/analysis/` | 기록 분석 6개 탭 |
+| `lib/screens/club/` | 클럽 기록·클럽별 통계, `detail/` 클럽 상세 |
+| `lib/screens/shot/` | 샷 데이터(내기록/평균 비교), 트레이닝 탭, 빈 상태 |
+| `lib/screens/screen_index.dart` | 피그마 프레임 ↔ 화면 대응표 |
 | `assets/images/` | 피그마에서 내려받은 원본 에셋 |
 | `assets/fonts/` | Spoqa Han Sans Neo (Regular/Medium/Bold) |
 

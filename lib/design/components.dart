@@ -322,6 +322,7 @@ class SubHeader extends StatelessWidget {
         children: [
           const AppStatusBar(),
           SizedBox(
+            width: double.infinity,
             height: 60,
             child: Stack(
               alignment: Alignment.center,

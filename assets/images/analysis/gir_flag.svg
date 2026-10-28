@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="17.5433" height="26" viewBox="0 0 17.5433 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="flag" clip-path="url(#clip0_0_28)">
+<ellipse id="Oval" cx="7.3125" cy="22.75" rx="7.3125" ry="3.25" fill="#22BB5F"/>
+<path id="Rectangle 3" d="M6.5 0.8125C6.5 0.363768 6.86377 0 7.3125 0C7.76123 0 8.125 0.363769 8.125 0.8125V21.9375C8.125 22.3862 7.76123 22.75 7.3125 22.75C6.86377 22.75 6.5 22.3862 6.5 21.9375V0.8125Z" fill-rule="evenodd" clip-rule="evenodd" fill="#101214"/>
+<path id="Path 5" d="M8.125 0.793054L16.6854 5.22401C17.0456 5.41046 17.0456 5.92565 16.6854 6.1121L8.125 10.5431V0.793054Z" fill-rule="evenodd" clip-rule="evenodd" fill="#FA5E4C"/>
+</g>
+<defs>
+<clipPath id="clip0_0_28">
+<rect width="17.5433" height="26" fill="white"/>
+</clipPath>
+</defs>
+</svg>

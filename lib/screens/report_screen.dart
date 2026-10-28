@@ -4,17 +4,26 @@ import 'package:flutter/material.dart';
 
 import '../design/components.dart';
 import '../design/tokens.dart';
+import '../routes.dart';
+import 'shot/screen_empty_body.dart';
+import 'shot/training_body.dart';
 
 /// Figma 02.0.CategoryHome_Report_Screen (1177:56265)
 class ReportScreen extends StatefulWidget {
-  const ReportScreen({super.key});
+  const ReportScreen({super.key, this.initialTab = 0, this.empty = false});
+
+  /// 0 = 스크린, 1 = 트레이닝 (`?tab=training`)
+  final int initialTab;
+
+  /// 데이터가 없는 상태 (`?state=empty`)
+  final bool empty;
 
   @override
   State<ReportScreen> createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  int _tab = 0; // 0 = 스크린, 1 = 트레이닝
+  late int _tab = widget.initialTab; // 0 = 스크린, 1 = 트레이닝
   int _nav = 1; // 리포트
   String _product = '프렌즈 스크린 Q';
   String _count = '최근 5회';
@@ -64,21 +73,16 @@ class _ReportScreenState extends State<ReportScreen> {
     );
   }
 
-  void _notReady(String what) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: AppColors.contentsPrimary.withValues(alpha: 0.9),
-          duration: const Duration(milliseconds: 1400),
-          content: Text(
-            '$what 화면은 아직 프로토타입에 없어요',
-            style: AppText.medium(14, color: AppColors.white),
-          ),
-        ),
-      );
-  }
+  void _notReady(String what) => showNotReady(context, what);
+
+  static const _analysisTabs = {
+    '평균 타수': 'score',
+    '드라이버 거리': 'driverDistance',
+    '페어웨이 안착률': 'fairway',
+    '그린 적중률': 'gir',
+    '파 세이브율': 'parSave',
+    '평균 퍼팅': 'putting',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +95,14 @@ class _ReportScreenState extends State<ReportScreen> {
           Expanded(
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 220),
-              child: _tab == 0
-                  ? SingleChildScrollView(
+              child: _tab == 1
+                  ? TrainingReportBody(
+                      key: ValueKey('training-${widget.empty}'),
+                      empty: widget.empty,
+                    )
+                  : widget.empty
+                  ? const ReportScreenEmptyBody(key: ValueKey('screen-empty'))
+                  : SingleChildScrollView(
                       key: const ValueKey('screen'),
                       child: Column(
                         children: [
@@ -104,26 +114,23 @@ class _ReportScreenState extends State<ReportScreen> {
                           const SizedBox(height: 20),
                           const _AdBanner(),
                           _ScorecardSection(
-                            onSeeAll: () => _notReady('스코어카드 목록'),
+                            onSeeAll: () => Navigator.of(
+                              context,
+                            ).pushNamed(Routes.scorecardList),
                           ),
                           _AnalysisSection(
                             productShort: _productShort,
                             countLabel: _count,
                             onProduct: _pickProduct,
                             onCount: _pickCount,
-                            onItem: (name) => _notReady(name),
+                            onItem: (name) => Navigator.of(context).pushNamed(
+                              Routes.analysis,
+                              arguments: {
+                                'tab': _analysisTabs[name] ?? 'score',
+                              },
+                            ),
                           ),
                         ],
-                      ),
-                    )
-                  : Center(
-                      key: const ValueKey('training'),
-                      child: Text(
-                        '트레이닝 리포트는 다음 단계에서 구현 예정',
-                        style: AppText.medium(
-                          14,
-                          color: AppColors.contentsTertiary,
-                        ),
                       ),
                     ),
             ),
