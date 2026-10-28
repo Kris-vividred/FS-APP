@@ -132,6 +132,7 @@ class _FilterBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
+    width: double.infinity,
     height: 72,
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,

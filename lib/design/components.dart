@@ -22,15 +22,23 @@ class AppBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 높이 18 고정, 너비는 글자에 맞춘다(hug). 부모가 넓은 공간을 줘도 늘어나지 않게
+    // alignment 대신 widthFactor 1인 Center로 가운데 정렬한다.
     return Container(
-      constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      height: 18,
+      constraints: const BoxConstraints(minWidth: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(AppSpace.radiusSm),
       ),
-      alignment: Alignment.center,
-      child: Text(label, style: AppText.bold(10, color: AppColors.white)),
+      child: Center(
+        widthFactor: 1,
+        child: Text(
+          label,
+          style: AppText.bold(10, color: AppColors.white).copyWith(height: 1.2),
+        ),
+      ),
     );
   }
 }
