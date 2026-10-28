@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="151.49" height="109.154" viewBox="0 0 151.49 109.154" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="bg_angle_bg">
+<path id="Combined Shape" opacity="0.949777" d="M0 109.154H151.49C148.772 64.2885 125.928 24.895 91.9297 0L0 109.154Z" fill="#F6F8F9"/>
+<mask id="mask0_0_74" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="152" height="110">
+<path id="Combined Shape_2" d="M0 109.154H151.49C148.772 64.2885 125.928 24.895 91.9297 0L0 109.154Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_0_74)">
+<g id="power">
+<ellipse id="Combined Shape_3" cx="-3.02829" cy="122.381" rx="126.5" ry="125" fill="white"/>
+<circle id="Combined Shape_4" cx="-4.52829" cy="113.381" r="28" fill="#7AD69F"/>
+</g>
+</g>
+</g>
+</svg>
