@@ -597,6 +597,11 @@ class _ScoreCardState extends State<_ScoreCard> {
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) => setState(() => _pressed = false),
       onTapCancel: () => setState(() => _pressed = false),
+      // 카드 → 스코어카드 상세(팀 경기는 팀 상세, 그 외 18홀 스트로크)
+      onTap: () => Navigator.of(context).pushNamed(
+        Routes.scorecardDetail,
+        arguments: {'type': d.teamMode ? 'team' : '18h'},
+      ),
       // 눌림 피드백: 살짝 축소
       child: AnimatedScale(
         scale: _pressed ? 0.98 : 1,
